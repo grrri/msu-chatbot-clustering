@@ -9,7 +9,7 @@
 - Bisecting *k*-means, FRIDA
 - Agglomerative, FRIDA
 
-Полученные с помощью наилучшей по метрикам кластеризации (Agglomerative, CountVectorizer) наборы текстов, находящиеся в одном кластере, были переданы YandexGPT Pro(temperature=0.7) в составе промпта, целью которого было создание краткого описания семантики кластера. Из-за плохого качества кластеризации результат семантизации кластеров оказался неинформативным.
+Полученные с помощью наилучшей по метрикам кластеризации (Agglomerative, CountVectorizer) наборы текстов, находящиеся в одном кластере, были переданы YandexGPT Pro(temperature=1) в составе промпта, целью которого было создание краткого описания семантики кластера. Из-за плохого качества кластеризации результат семантизации кластеров оказался неинформативным.
 
 Кластеризация с помощью YandexGPT Pro показала наилучшие результаты. Модели подавался список уже выделенных интентов (при наличии), небольшой набор примеров для Few-Shot классификации (кроме Zero-Shot решения), полученных из сплита *test* автоматически и переведённых на русский язык, а также текст, которому необходимо было сопоставить один из существующих интентов или сформулировать новый. Во втором случае полученная метка добавлялась в список существующих интентов. Далее этот пайплайн перезапускался с новым текстом.
 
@@ -65,7 +65,7 @@ Includes a comparison of several embedder (CountVectorizer, [FRIDA](https://hugg
 - Bisecting *k*-means, FRIDA
 - Agglomerative, FRIDA
 
-Texts of each cluster obtained from the top-1 clustering-embedding combination (Agglomerative Clustering, CountVectorizer) were fed to YandexGPT Pro(temperature=0.7) with a prompt aimed at creating a short semantic definition of each cluster. However, due to poor clustering quality, the result was not highly informative.
+Texts of each cluster obtained from the top-1 clustering-embedding combination (Agglomerative Clustering, CountVectorizer) were fed to YandexGPT Pro(temperature=1) with a prompt aimed at creating a short semantic definition of each cluster. However, due to poor clustering quality, the result was not highly informative.
 
 Clustering via YandexGPT Pro with a customized prompt achieved the highest metrics. The model was fed a list of existing intent labels (if any), a small sample of pre-labelled Few-Shot examples (unless Zero-Shot) automatically obtained and translated from the test split of the dataset, and a text which was to be labelled. The output label was then added to the list of existing intents (unless it already was), and the pipeline was run again with a new text from the training dataset.
 
