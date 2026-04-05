@@ -44,9 +44,11 @@
 - Agglomerative, FRIDA
 - HDBSCAN(min_cluster_size=5), FRIDA
 
+##### Подподвыборка из 1000 текстов:
+- Тексты
+- Исходные метки классов
+
 ##### Результаты выделения интентов через YandexGPT:
-- Подподвыборка из 1000 текстов
-- Исходные метки классов для подподвыборки
 - Метки, полученные с помощью 0-Shot
 - Метки, полученные с помощью 5-Shot
 - Метки, полученные с помощью 10-Shot
@@ -54,7 +56,7 @@
 
 # (EN) Russian-language chatbot request intent clustering
 
-### Dataset used: [huggingface.co/datasets/AmazonScience/massive](huggingface.co/datasets/AmazonScience/massive), RU-ru subset, 1000 texts from the *validation* split containing 39 ground truth intent labels.
+### Dataset used: [huggingface.co/datasets/AmazonScience/massive](huggingface.co/datasets/AmazonScience/massive), RU-ru subset, 1000 texts from the *validation* split containing 39 ground truth intent labels for the LLM-powered solution.
 
 Includes a comparison of several embedder (CountVectorizer, [FRIDA](https://huggingface.co/ai-forever/FRIDA)) and clustering algorithm (*k*-means, Bisecting *k*-means, Spectral Clustering, Agglomerative Clustering, HDBSCAN) combinations, none of which showed satisfactory results using the chosen metrics (Adjusted Rand Index and Normalized Mutual Information). The best-performing of them were:
 - Agglomerative, CountVectorizer
@@ -94,3 +96,14 @@ Clustering via YandexGPT Pro with a customized prompt achieved the highest metri
 - Bisecting *k*-means, FRIDA
 - Agglomerative, FRIDA
 - HDBSCAN(min_cluster_size=5), FRIDA
+
+##### 1000-text subsample:
+- Texts
+- Ground Truth labels
+
+##### LLM-powered Intent Discovery results:
+- 0-Shot labels
+- 5-Shot labels
+- 10-Shot labels
+- 20-Shot labels
+
