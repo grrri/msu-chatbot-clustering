@@ -1,6 +1,6 @@
 # (RU) Кластеризация русскоязычных запросов к чатботу по пользовательским интентам
 
-### Использованный датасет: [huggingface.co/datasets/AmazonScience/massive](huggingface.co/datasets/AmazonScience/massive), подвыборка RU-ru, 1000 текстов из сплита *validation* (39 исходных интентов).
+### Использованный датасет: [huggingface.co/datasets/AmazonScience/massive](huggingface.co/datasets/AmazonScience/massive), подвыборка RU-ru, для решение через LLM — 1000 текстов из сплита *validation* (39 исходных интентов).
 
 Произведено сравнение нескольких комбинаций эмбеддеров (CountVectorizer, [FRIDA](https://huggingface.co/ai-forever/FRIDA)) и алгоритмов кластеризации (*k*-means, Bisecting *k*-means, Spectral Clustering, Agglomerative Clustering, HDBSCAN). Результаты всех из них оказались довольно низки по сравнению с решением задачи с помощью LLM. Лучшие из них (в порядке убывания ключевых метрик Adjusted Rand Index и Normalized Mutual Information):
 - Agglomerative, CountVectorizer
@@ -43,6 +43,14 @@
 - Bisecting *k*-means, FRIDA
 - Agglomerative, FRIDA
 - HDBSCAN(min_cluster_size=5), FRIDA
+
+##### Результаты выделения интентов через YandexGPT:
+- Подподвыборка из 1000 текстов
+- Исходные метки классов для подподвыборки
+- Метки, полученные с помощью 0-Shot
+- Метки, полученные с помощью 5-Shot
+- Метки, полученные с помощью 10-Shot
+- Метки, полученные с помощью 20-Shot
 
 # (EN) Russian-language chatbot request intent clustering
 
