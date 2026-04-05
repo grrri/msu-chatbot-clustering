@@ -2,7 +2,7 @@
 
 ### Использованный датасет: [huggingface.co/datasets/AmazonScience/massive](huggingface.co/datasets/AmazonScience/massive), подвыборка RU-ru, 1000 текстов из сплита *validation* (39 исходных интентов).
 
-Произведено сравнение нескольких комбинаций эмбеддеров (CountVectorizer, [FRIDA](https://huggingface.co/ai-forever/FRIDA)) и алгоритмов кластеризации (*k*-means, Bisecting *k*-means, Spectral, Agglomerative Clustering, HDBSCAN). Результаты всех из них оказались довольно низки по сравнению с решением задачи с помощью LLM. Лучшие из них (в порядке убывания ключевых метрик Adjusted Rand Index и Normalized Mutual Information):
+Произведено сравнение нескольких комбинаций эмбеддеров (CountVectorizer, [FRIDA](https://huggingface.co/ai-forever/FRIDA)) и алгоритмов кластеризации (*k*-means, Bisecting *k*-means, Spectral Clustering, Agglomerative Clustering, HDBSCAN). Результаты всех из них оказались довольно низки по сравнению с решением задачи с помощью LLM. Лучшие из них (в порядке убывания ключевых метрик Adjusted Rand Index и Normalized Mutual Information):
 - Agglomerative, CountVectorizer
 - *k*-means, CountVectorizer
 - *k*-means, FRIDA
@@ -45,14 +45,14 @@
 
 ### Dataset used: [huggingface.co/datasets/AmazonScience/massive](huggingface.co/datasets/AmazonScience/massive), RU-ru subset, 1000 texts from the *validation* split containing 39 ground truth intent labels.
 
-Includes a comparison of several embedder (CountVectorizer, [FRIDA](https://huggingface.co/ai-forever/FRIDA)) and clustering algorithm (*k*-means, Bisecting *k*-means, Spectral, Agglomerative Clustering, HDBSCAN) combinations, none of which showed satisfactory results using the chosen metrics (Adjusted Rand Index and Normalized Mutual Information). The best-performing of them were:
+Includes a comparison of several embedder (CountVectorizer, [FRIDA](https://huggingface.co/ai-forever/FRIDA)) and clustering algorithm (*k*-means, Bisecting *k*-means, Spectral Clustering, Agglomerative Clustering, HDBSCAN) combinations, none of which showed satisfactory results using the chosen metrics (Adjusted Rand Index and Normalized Mutual Information). The best-performing of them were:
 - Agglomerative, CountVectorizer
 - *k*-means, CountVectorizer
 - *k*-means, FRIDA
 - Bisecting *k*-means, FRIDA
 - Agglomerative, FRIDA
 
-Texts of each cluster obtained from the top-1 clustering-embedding combination (Agglomerative, CountVectorizer) were fed to YandexGPT Pro(temperature=0.7) with a prompt aimed at creating a short semantic definition of each cluster. However, due to poor clustering quality, the result was not highly informative.
+Texts of each cluster obtained from the top-1 clustering-embedding combination (Agglomerative Clustering, CountVectorizer) were fed to YandexGPT Pro(temperature=0.7) with a prompt aimed at creating a short semantic definition of each cluster. However, due to poor clustering quality, the result was not highly informative.
 
 Clustering via YandexGPT Pro with a customized prompt achieved the highest metrics. The model was fed a list of existing intent labels (if any), a small sample of pre-labelled Few-Shot examples (unless Zero-Shot) automatically obtained and translated from the test split of the dataset, and a text which was to be labelled. The output label was then added to the list of existing intents (unless it already was), and the pipeline was run again with a new text from the training dataset.
 
